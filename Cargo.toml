@@ -1,0 +1,44 @@
+[package]
+name = "cargo-apk-rust-flags-issue"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1.27.0", features = ["full"] }
+tokio-metrics = "0.2.0"
+
+winit = { version = "0.28", features = ["android-native-activity"] }
+simple_logger = { version = "2.1.0", default_features = false }
+
+[lib]
+#name="main"
+crate_type=["cdylib"]
+
+# cargo apk stuff
+[package.metadata.android]
+build_targets = ["aarch64-linux-android"]
+
+# Should probably switch to this when we get closer to release.
+# package_name = "com.embark-studios.ark"
+
+[package.metadata.android.application]
+apk_label = "Test"
+fullscreen = true
+debuggable = true
+launch_mode = "singleInstance"
+theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen"
+
+[package.metadata.android.sdk]
+min_sdk_version = 29
+target_sdk_version = 29
+max_sdk_version = 29
+
+[package.metadata.android.signing.dev]
+path = "C:/Users/robin.thunstrom/.android/debug.keystore"
+keystore_password = "android"
+
+[package.metadata.android.signing.release]
+path = "C:/Users/robin.thunstrom/.android/debug.keystore"
+keystore_password = "android"
